@@ -1,5 +1,6 @@
 const Home = () =>{
-(<>HELLO COMPONENTS</>)
+    console.log("Home");
+return (<h1>HOME</h1>)
 }
 
-export default Home
+export default Home;
