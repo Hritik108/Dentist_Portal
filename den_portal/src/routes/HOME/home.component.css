@@ -1,0 +1,166 @@
+/* Global Styles */
+
+/* body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+  } */
+  
+  /* Header Styles */
+  
+  /* header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+   */
+  /* nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li:first-child {
+    margin-left: 0;
+  }
+  
+  nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    color: #00bcd4;
+  }
+   */
+  /* Main Styles */
+  
+  .home-main {
+    margin-top: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  #home-hero {
+    background-image: url('https://source.unsplash.com/1600x900/?dentist');
+    background-position: center;
+    background-size: cover;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  #home-hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  #home-hero p {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    display: inline-block;
+    background-color: #00bcd4;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: #008ba3;
+  }
+  
+  #home-services {
+    margin-top: 80px;
+  }
+  
+  #home-services h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  #home-services ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  #home-services li {
+    width: calc(100% / 4 - 20px);
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #home-services li:last-child {
+    margin-right: 0;
+  }
+  
+  #home-services a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  #home-services a:hover {
+    color: #00bcd4;
+  }
+  
+  #home-about {
+    margin-top: 80px;
+  }
+  
+  #home-about h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  #home-about p {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #home-contact {
+    margin-top: 80px;
+  }
+  
+  #home-contact h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .home-form label {
+    display: block;
+    font-size: 18
+  }
