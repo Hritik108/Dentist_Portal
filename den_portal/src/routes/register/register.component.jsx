@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import './register.component.css';
+import React, { useState, useEffect } from "react";
+import "./register.component.css";
+import $ from "jquery";
 
 const Register = () => {
-  const [customerId, setCustomerId] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [password, setPassword] = useState('');
+  const [customerId, setCustomerId] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleCustomerIdChange = (e) => {
     setCustomerId(e.target.value);
@@ -23,48 +24,63 @@ const Register = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  async function load_messages() {
+    let name = $("#name").val();
+    let number = $("#number").val();
+    let email = $("#email").val();
+    let password = $("#password").val();
     const data = {
-      customerId: customerId,
-      address: address,
-      city: city,
-      password: password
+      name: name,
+      number: number,
+      email: email,
+      password: password,
     };
-
     console.log(data);
+    fetch("/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  }
 
-    // TODO: Send data to server and handle response
+  const onSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
-    <div className='register-container'>
+    <div className="register-container">
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div>
-          <label className='register-label' htmlFor="customerId">Customer ID:</label>
+          <label className="register-label" htmlFor="customerId">
+            Name:
+          </label>
           <input
             type="text"
-            id="customerId"
+            id="name"
             value={customerId}
             onChange={handleCustomerIdChange}
           />
         </div>
         <div>
-          <label htmlFor="address">Address:</label>
+          <label htmlFor="address">Email:</label>
           <input
             type="text"
-            id="address"
+            id="email"
             value={address}
             onChange={handleAddressChange}
           />
         </div>
         <div>
-          <label htmlFor="city">City:</label>
+          <label htmlFor="city">Phone number</label>
           <input
             type="text"
-            id="city"
+            id="number"
             value={city}
             onChange={handleCityChange}
           />
@@ -78,7 +94,9 @@ const Register = () => {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" onClick={() => load_messages()}>
+          Register
+        </button>
       </form>
     </div>
   );
