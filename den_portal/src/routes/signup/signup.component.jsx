@@ -4,7 +4,7 @@ import $ from "jquery";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [customerId, setCustomerId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,7 +29,6 @@ const Signup = () => {
       ID: ID,
       password: password,
     };
-    console.log(data);
     fetch("/api/login", {
       method: "POST",
       headers: {
@@ -38,9 +37,17 @@ const Signup = () => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => {console.log(data.data)
-        navigate("/about"); 
-       })
+      .then((data) => {
+        console.log(data.data);
+        if (data.data == "WRONG PASSWORD") {
+          alert("PASSWORD DOESN NOT MATCH");
+        }
+        if (data.data == "CUSTOMER ID NOT FOUND") {
+          alert("CUSTOMER ID OR EMAIL NOT FOUND");
+        } else {
+          navigate("/about");
+        }
+      })
       .catch((error) => console.log(error));
   }
 

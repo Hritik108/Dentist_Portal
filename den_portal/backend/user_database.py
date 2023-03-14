@@ -46,7 +46,10 @@ class DataBase:
     def fetch_data(self,ID):
         query = f"SELECT * FROM {TABLE_NAME} WHERE name = ?"
         self.cursor.execute(query, (ID,))
-        result = self.cursor.fetchall()[0]
+
+        result = self.cursor.fetchall()
+        if result:
+            result  = result[0]
 
         return result
 
