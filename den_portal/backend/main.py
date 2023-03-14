@@ -17,7 +17,7 @@ def signup():
     db = DataBase()
 
     data = db.save_data(name,email,number,password)
-
+    # data = {"name":data[0],"email":data[1],"number":data[2],"password":data[3]}
     return jsonify({"data" : data})
 
 
