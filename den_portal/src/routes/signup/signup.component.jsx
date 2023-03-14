@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./signup.component.css";
 import $ from "jquery";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate(); 
   const [customerId, setCustomerId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,7 +38,9 @@ const Signup = () => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {console.log(data.data)
+        navigate("/about"); 
+       })
       .catch((error) => console.log(error));
   }
 

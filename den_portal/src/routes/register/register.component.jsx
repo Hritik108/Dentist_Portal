@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./register.component.css";
 import $ from "jquery";
+import {useNavigate} from "react-router-dom"
 
 const Register = () => {
   const [customerId, setCustomerId] = useState("");
@@ -44,8 +45,9 @@ const Register = () => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => console.log(data.data))
       .catch((error) => console.log(error));
+
   }
 
   const onSubmit = (e) => {
