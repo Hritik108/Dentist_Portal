@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import './signup.component.css';
+import React, { useState } from "react";
+import "./signup.component.css";
+import $ from "jquery";
 
 const Signup = () => {
-  const [customerId, setCustomerId] = useState('');
-  const [password, setPassword] = useState('');
+  const [customerId, setCustomerId] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleCustomerIdChange = (e) => {
     setCustomerId(e.target.value);
@@ -16,22 +17,37 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      customerId: customerId,
-      password: password
-    };
-
-    console.log(data);
-
     // TODO: Send data to server and handle response
   };
 
+  async function load_messages(e) {
+    let ID = $("#customerId").val();
+    let password = $("#password").val();
+    const data = {
+      ID: ID,
+      password: password,
+    };
+    console.log(data);
+    fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  }
+
   return (
-    <div className='register-container'>
+    <div className="register-container">
       <h1>Signup</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label className='register-label' htmlFor="customerId">Customer ID:</label>
+          <label className="register-label" htmlFor="customerId">
+            Customer ID:
+          </label>
           <input
             type="text"
             id="customerId"
@@ -48,7 +64,9 @@ const Signup = () => {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">SignIn</button>
+        <button type="submit" onClick={() => load_messages()}>
+          SignIn
+        </button>
       </form>
     </div>
   );
