@@ -6,8 +6,12 @@ import { AccountContext } from "../../contexts/context.accoounts";
 import { useContext } from "react";
 import Account from "../account/account.component";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Signup = () => {
+  const [show, setShow] = useState(false);
+  const [error , setError] = useState("")
   const {setName} = useContext(AccountContext);
   const navigate = useNavigate();
   const [customerId, setCustomerId] = useState("");
@@ -20,13 +24,6 @@ const Signup = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // TODO: Send data to server and handle response
-  };
-
   async function load_messages(e) {
     let ID = $("#customerId").val();
     let password = $("#password").val();
@@ -45,11 +42,14 @@ const Signup = () => {
       .then((data) => {
         console.log(data.data);
         if (data.data == "WRONG PASSWORD") {
-          alert("PASSWORD DOESN NOT MATCH");
+          setError("Wrong Password")
+          setShow(true)
         }
-        if (data.data == "CUSTOMER ID NOT FOUND") {
-          alert("CUSTOMER ID OR EMAIL NOT FOUND");
-        } else {
+        else if (data.data == "CUSTOMER ID NOT FOUND") {
+          setError("Customer ID not found")
+          setShow(true)
+        } 
+        else {
           console.log(data.data)
           setName(data.data[0])
           navigate("/account");
@@ -57,9 +57,24 @@ const Signup = () => {
       })
       .catch((error) => console.log(error));
   }
-
   return (
-    <div className="login">
+    <div>
+        {(() => {
+        if (show) {
+          return (
+
+              <Alert variant="danger" style={{transitionDelay:"1s"}} onClose={() => setShow(false)} dismissible>
+                <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+                <p>
+                  {error}
+                </p>
+              </Alert>
+                
+          )
+        }  
+      })()}
+      <div className="login">
+          
       <h1>Login</h1>
       <input
         type="text"
@@ -84,6 +99,7 @@ const Signup = () => {
       <div className="button" onClick={() => navigate("/register")}>
         Register
       </div>
+    </div>
     </div>
   );
 };
