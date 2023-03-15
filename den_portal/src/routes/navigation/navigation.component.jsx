@@ -109,7 +109,7 @@ return (
           <li className="nav-item">
             <NavLink
               exact
-              to="/patient_portal"
+              to="login"
               activeClassName="active"
               className="nav-links"
              onClick={click ? handleClick : null}

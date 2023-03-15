@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import "./signup.component.css";
 import $ from "jquery";
 import { useNavigate } from "react-router-dom";
+import { AccountContext } from "../../contexts/context.accoounts";
+import { useContext } from "react";
+import Account from "../account/account.component";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 
 const Signup = () => {
+  const {setName} = useContext(AccountContext);
   const navigate = useNavigate();
   const [customerId, setCustomerId] = useState("");
   const [password, setPassword] = useState("");
@@ -45,40 +50,40 @@ const Signup = () => {
         if (data.data == "CUSTOMER ID NOT FOUND") {
           alert("CUSTOMER ID OR EMAIL NOT FOUND");
         } else {
-          navigate("/about");
+          console.log(data.data)
+          setName(data.data[0])
+          navigate("/account");
         }
       })
       .catch((error) => console.log(error));
   }
 
   return (
-    <div className="register-container">
-      <h1>Signup</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label className="register-label" htmlFor="customerId">
-            Customer ID:
-          </label>
-          <input
-            type="text"
-            id="customerId"
-            value={customerId}
-            onChange={handleCustomerIdChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <button type="submit" onClick={() => load_messages()}>
-          SignIn
-        </button>
-      </form>
+    <div className="login">
+      <h1>Login</h1>
+      <input
+        type="text"
+        name="email"
+        value={customerId}
+        onChange={ handleCustomerIdChange}
+        placeholder="Enter your Email"
+        id="customerId"
+      ></input>
+      <input
+        type="password"
+        name="password"
+        value={password}
+        onChange={ handlePasswordChange}
+        placeholder="Enter your Password"
+        id="password"
+      ></input>
+      <div className="button" onClick={load_messages}>
+        Login
+      </div>
+      <div>or</div>
+      <div className="button" onClick={() => navigate("/register")}>
+        Register
+      </div>
     </div>
   );
 };
