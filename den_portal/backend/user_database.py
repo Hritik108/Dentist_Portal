@@ -44,7 +44,13 @@ class DataBase:
         self.conn.commit()
 
     def fetch_data(self,ID):
-        query = f"SELECT * FROM {TABLE_NAME} WHERE name = ?"
+        if "@gmail" in ID:
+
+            query = f"SELECT * FROM {TABLE_NAME} WHERE email = ?"
+        
+        else:
+            query = f"SELECT * FROM {TABLE_NAME} WHERE id = ?"
+
         self.cursor.execute(query, (ID,))
 
         result = self.cursor.fetchall()
