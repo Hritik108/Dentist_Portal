@@ -10,10 +10,13 @@ import Testimonials from "./routes/testimonials/testimonials";
 import SignupForm from "./routes/register/register.component";
 import Signup from "./routes/signup/signup.component";
 import Account from "./routes/account/account.component";
+import { useContext } from "react";
+import { AccountContext } from "./contexts/context.accoounts";
 
 import "./App.css";
 
 function App() {
+  const {setIsLogin,isLogin} = useContext(AccountContext);
   return (
     // <div className="App">
     //   <h1>HELLO</h1>
@@ -28,7 +31,8 @@ function App() {
         <Route path="testimonials" element={<Testimonials />} />
         <Route path="register" element={<SignupForm />} />
         <Route path="login" element={<Signup />} />
-        <Route path="account" element={<Account/>} />
+        {isLogin && <Route path="account" element={<Account/>} />}
+        { !isLogin && <Route path="account" element={<Signup/>} />}
         {/* <Route path="auth" element={<Authentication />} /> */}
       </Route>
     </Routes>

@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Signup = () => {
   const [show, setShow] = useState(false);
   const [error , setError] = useState("")
-  const {setName} = useContext(AccountContext);
+  const {setName,setIsLogin} = useContext(AccountContext);
   const navigate = useNavigate();
   const [customerId, setCustomerId] = useState("");
   const [password, setPassword] = useState("");
@@ -52,6 +52,7 @@ const Signup = () => {
         else {
           console.log(data.data)
           setName(data.data[0])
+          setIsLogin(true)
           navigate("/account");
         }
       })
