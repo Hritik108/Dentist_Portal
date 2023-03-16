@@ -65,7 +65,7 @@
   text-align: center;
 }
 
-.register > input {
+.register > input , select {
   border-radius: 8px;
   border: 2px solid #dddfe2;
   outline: none;

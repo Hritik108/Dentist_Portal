@@ -39,7 +39,7 @@ class DataBase:
         :return: None
         """
         query = f"""CREATE TABLE IF NOT EXISTS {TABLE_NAME}
-                    (name TEXT, email TEXT, number NUMBER ,password TEXT, id INTEGER PRIMARY KEY AUTOINCREMENT)"""
+                    (name TEXT, email TEXT, number NUMBER ,password TEXT, address TEXT , gender TEXT , id INTEGER PRIMARY KEY AUTOINCREMENT)"""
         self.cursor.execute(query)
         self.conn.commit()
 
@@ -67,7 +67,7 @@ class DataBase:
         return result
 
 
-    def save_data(self, name, email , number , password):
+    def save_data(self, name, email , number , password,address , gender):
         """
         saves the given message in the table
         :param name: str
@@ -75,8 +75,8 @@ class DataBase:
         :param time: datetime
         :return: None
         """
-        query = f"INSERT INTO {TABLE_NAME} VALUES (?, ?, ?, ? , ?)"
-        self.cursor.execute(query, (name, email, number, password , None))
+        query = f"INSERT INTO {TABLE_NAME} VALUES (?, ?, ?, ? , ?, ?)"
+        self.cursor.execute(query, (name, email, number, password, address , None))
         self.conn.commit()
 
         return self.returning_customer_id(email)

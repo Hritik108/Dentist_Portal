@@ -13,10 +13,12 @@ def signup():
     email = data['email']
     number = data['number']
     password = data['password']
+    address = data['address']
+    gender = data['gender']
 
     db = DataBase()
 
-    data = db.save_data(name,email,number,password)
+    data = db.save_data(name,email,number,password,address,gender)
     # data = {"name":data[0],"email":data[1],"number":data[2],"password":data[3]}
     return jsonify({"data" : data})
 

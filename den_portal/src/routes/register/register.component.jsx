@@ -7,7 +7,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [customerId, setCustomerId] = useState("");
   const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
+  const [gender , setGender] = useState("")
   const [password, setPassword] = useState("");
 
   const handleCustomerIdChange = (e) => {
@@ -18,24 +18,27 @@ const Register = () => {
     setAddress(e.target.value);
   };
 
-  const handleCityChange = (e) => {
-    setCity(e.target.value);
-  };
-
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
+  const handleGenderChange = (e) => {
+    setGender(e.target.value)
+  }
   async function load_messages() {
     let name = $("#name").val();
     let number = $("#number").val();
     let email = $("#email").val();
     let password = $("#password").val();
+    let address = $("#address").val();
+    let gender = $("#gender").val();
     const data = {
       name: name,
       number: number,
       email: email,
       password: password,
+      address: address,
+      gender : gender
     };
     console.log(data);
     fetch("/api/signup", {
@@ -49,62 +52,9 @@ const Register = () => {
       .then((data) => console.log(data.data))
       .catch((error) => console.log(error));
   }
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
-    
-      // <div className="register-container">
-      //   <h1>Register</h1>
-      //   <form onSubmit={onSubmit}>
-          /* <div>
-            <label className="register-label" htmlFor="customerId">
-              Name:
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={customerId}
-              onChange={handleCustomerIdChange}
-            />
-          </div> */
-        /* <div>
-            <label htmlFor="address">Email:</label>
-            <input
-              type="text"
-              id="email"
-              value={address}
-              onChange={handleAddressChange}
-            />
-          </div> */
-      //     <div>
-      //       <label htmlFor="city">Phone number</label>
-      //       <input
-      //         type="text"
-      //         id="number"
-      //         value={city}
-      //         onChange={handleCityChange}
-      //       />
-      //     </div>
-      //     <div>
-      //       <label htmlFor="password">Password:</label>
-      //       <input
-      //         type="password"
-      //         id="password"
-      //         value={password}
-      //         onChange={handlePasswordChange}
-      //       />
-      //     </div>
-      //     <button type="submit" onClick={() => load_messages()}>
-      //       Register
-      //     </button>
-      //   </form>
-      // </div>
-
       <div className="register">
-        {/* {console.log("User", user)} */}
+
         <h1>Register</h1>
         <input
           type="text"
@@ -117,25 +67,32 @@ const Register = () => {
         <input
           type="text"
           name="email"
-          // value={user.email}
           placeholder="Your Email"
-          // onChange={handleChange}
           id="email"
           value={address}
           onChange={handleAddressChange}
         ></input>
-        <div>
-          Gender:
-        <input type="radio" value="Male" name="gender" /> Male
-        <input type="radio" value="Female" name="gender" /> Female
-        <input type="radio" value="Other" name="gender" /> Other
-      </div>
+        <label>
+          <select value={gender} id="gender" onChange={handleGenderChange}>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+            
+          </select>
+        </label>
          <input
           type="tel"
           name="number"
           id="number"
           placeholder="Your Number"
           pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
+        ></input>
+        <input
+          type="text"
+          name="text"
+          
+          id="address"
+          placeholder="Enter Your address"
         ></input>
         <input
           type="password"
