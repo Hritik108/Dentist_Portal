@@ -76,7 +76,7 @@ class DataBase:
         :return: None
         """
         query = f"INSERT INTO {TABLE_NAME} VALUES (?, ?, ?, ? , ?, ?)"
-        self.cursor.execute(query, (name, email, number, password, address , None))
+        self.cursor.execute(query, (name, email, number, password, address, gender , None))
         self.conn.commit()
 
         return self.returning_customer_id(email)
