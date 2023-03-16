@@ -75,7 +75,7 @@ class DataBase:
         :param time: datetime
         :return: None
         """
-        query = f"INSERT INTO {TABLE_NAME} VALUES (?, ?, ?, ? , ?, ?)"
+        query = f"INSERT INTO {TABLE_NAME} VALUES (?, ?, ?, ? , ?, ? , ?)"
         self.cursor.execute(query, (name, email, number, password, address, gender , None))
         self.conn.commit()
 

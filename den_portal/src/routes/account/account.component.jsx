@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AccountContext } from "../../contexts/context.accoounts";
@@ -31,6 +31,14 @@ const Account = () => {
     isLogin,
     setIsLogin,
     setAppointments,
+    address,
+    setAddress,
+    email,
+    setEmail,
+    gender,
+    setGender,
+    number,
+    setNumber,
   } = useContext(AccountContext);
   const logOut = () => {
     setName("");
@@ -39,12 +47,34 @@ const Account = () => {
     setIsLogin(false);
     navigate("/login");
   };
+
+  const [Services,setServices] =useState([]);
+
+  const dental_Cleaning = () =>{
+   setServices(Serv =>[...Serv,{'services':'Dental Cleanings','serviceCharges':10}])
+   console.log(Services);
+  }
+  const fillings = () =>{
+    setServices(Serv => [...Serv,{'services':'Fillings','serviceCharges':10}])
+   }
+   const root_Canals = () =>{
+    setServices(Serv => [...Serv,{'services':'Root Canals','serviceCharges':10}])
+   }
+   const dental_implants = () =>{
+    setServices(Serv => [...Serv,{'services':'Dental Implants','serviceCharges':10}])
+   }
+   const orthodontics = () =>{
+    setServices(Serv => [...Serv,{'services':'Orthodontics','serviceCharges':10}])
+   }
+   const teeth_Withening = () =>{
+    setServices(Serv => [...Serv,{'services':'Teeth Whithening','serviceCharges':10}])
+   }
   return (
     <div>
       <Button onClick={logOut}></Button>
       <section style={{ backgroundColor: "#eee" }}>
         <MDBContainer className="py-5">
-          <MDBRow>
+          {/* <MDBRow>
             <MDBCol>
               <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
                 <MDBBreadcrumbItem>
@@ -56,7 +86,7 @@ const Account = () => {
                 <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
               </MDBBreadcrumb>
             </MDBCol>
-          </MDBRow>
+          </MDBRow> */}
 
           <MDBRow>
             <MDBCol lg="4">
@@ -70,12 +100,12 @@ const Account = () => {
                     fluid
                   />
                   <p className="text-muted mb-1">{name}</p>
-                  <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                  <p className="text-muted mb-4">{address}</p>
                   <div className="d-flex justify-content-center mb-2">
-                    <MDBBtn>Follow</MDBBtn>
+                    {/* <MDBBtn>Follow</MDBBtn>
                     <MDBBtn outline className="ms-1">
                       Message
-                    </MDBBtn>
+                    </MDBBtn> */}
                   </div>
                 </MDBCardBody>
               </MDBCard>
@@ -131,9 +161,7 @@ const Account = () => {
                       <MDBCardText>Full Name</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">
-                        Johnatan Smith
-                      </MDBCardText>
+                      <MDBCardText className="text-muted">{name}</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -142,20 +170,7 @@ const Account = () => {
                       <MDBCardText>Email</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">
-                        example@example.com
-                      </MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-                  <hr />
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Phone</MDBCardText>
-                    </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted">
-                        (097) 234-5678
-                      </MDBCardText>
+                      <MDBCardText className="text-muted">{email}</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -164,9 +179,7 @@ const Account = () => {
                       <MDBCardText>Mobile</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">
-                        (098) 765-4321
-                      </MDBCardText>
+                      <MDBCardText className="text-muted">{number}</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -176,7 +189,7 @@ const Account = () => {
                     </MDBCol>
                     <MDBCol sm="9">
                       <MDBCardText className="text-muted">
-                        Bay Area, San Francisco, CA
+                        {address}
                       </MDBCardText>
                     </MDBCol>
                   </MDBRow>
@@ -189,79 +202,76 @@ const Account = () => {
                     <MDBCardBody>
                       <MDBCardText className="mb-4">
                         <span className="text-primary font-italic me-1">
-                          assigment
+                          Services Available
                         </span>{" "}
-                        Project Status
+                        Rates
+                        <hr />
+                        <MDBRow on onClick={dental_Cleaning}>
+                          <MDBCol sm="9">
+                            <MDBCardText>Dental Cleanings</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                              10$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow onClick={fillings}>
+                          <MDBCol sm="9">
+                            <MDBCardText>Filings</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                              10$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow onClick={root_Canals}>
+                          <MDBCol sm="9">
+                            <MDBCardText>Root Canals</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                              10$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow onClick={dental_implants}>
+                          <MDBCol sm="9">
+                            <MDBCardText>Dental Implants</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                              10$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow onClick={orthodontics}>
+                          <MDBCol sm="9">
+                            <MDBCardText>Orthodontics</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                              10$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        <MDBRow onClick={teeth_Withening}>
+                          <MDBCol sm="9">
+                            <MDBCardText>Teeth Whitening</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                              10$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
                       </MDBCardText>
-                      <MDBCardText
-                        className="mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Web Design
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={80}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Website Markup
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={72}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        One Page
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={89}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Mobile Template
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={55}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Backend API
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={66}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
@@ -275,75 +285,41 @@ const Account = () => {
                         </span>{" "}
                         Project Status
                       </MDBCardText>
-                      <MDBCardText
-                        className="mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Web Design
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={80}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Website Markup
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={72}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        One Page
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={89}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Mobile Template
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={55}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
-
-                      <MDBCardText
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Backend API
-                      </MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar
-                          width={66}
-                          valuemin={0}
-                          valuemax={100}
-                        />
-                      </MDBProgress>
+                      <hr />
+                    {
+                       Services.map(service => (<><MDBRow>
+                          <MDBCol sm="9">
+                            <MDBCardText>{service.services}</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                            {service.serviceCharges}$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+                        <hr /></>))
+                    }
+                    <MDBRow>
+                     <MDBCol sm="9">
+                            <MDBCardText>Total Cost</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                            {Services.length*10}$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+                        <hr />
+                        {/* <MDBRow>
+                          <MDBCol sm="9">
+                            <MDBCardText>Teeth Whitening</MDBCardText>
+                          </MDBCol>
+                          <MDBCol sm="3">
+                            <MDBCardText className="text-muted">
+                              10$
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow> */}
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
