@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Signup = () => {
   const [show, setShow] = useState(false);
   const [error , setError] = useState("")
-  const {setName,setIsLogin} = useContext(AccountContext);
+  const {setName,setIsLogin,setEmail,setNumber} = useContext(AccountContext);
   const navigate = useNavigate();
   const [customerId, setCustomerId] = useState("");
   const [password, setPassword] = useState("");

@@ -124,6 +124,12 @@ const Register = () => {
           value={address}
           onChange={handleAddressChange}
         ></input>
+        <div>
+          Gender:
+        <input type="radio" value="Male" name="gender" /> Male
+        <input type="radio" value="Female" name="gender" /> Female
+        <input type="radio" value="Other" name="gender" /> Other
+      </div>
          <input
           type="tel"
           name="number"
