@@ -11,10 +11,6 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBBtn,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem,
-  MDBProgress,
-  MDBProgressBar,
   MDBIcon,
   MDBListGroup,
   MDBListGroupItem,
@@ -25,7 +21,7 @@ const Account = () => {
     name,
     setName,
     id,
-    setId,
+    setCustomerId,
     addAppointment,
     Appointments,
     isLogin,
@@ -42,7 +38,7 @@ const Account = () => {
   } = useContext(AccountContext);
   const logOut = () => {
     setName("");
-    setId("");
+    setCustomerId("");
     setAppointments("");
     setIsLogin(false);
     navigate("/login");
@@ -69,25 +65,27 @@ const Account = () => {
    const teeth_Withening = () =>{
     setServices(Serv => [...Serv,{'services':'Teeth Whithening','serviceCharges':10}])
    }
+
+   const Appointment = () =>{
+    const data = {
+      "customer_id" : id,
+      "services" : Services 
+    }
+    fetch("/api/appointment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+   }
+
   return (
     <div>
       <Button onClick={logOut}></Button>
       <section style={{ backgroundColor: "#eee" }}>
         <MDBContainer className="py-5">
-          {/* <MDBRow>
-            <MDBCol>
-              <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-                <MDBBreadcrumbItem>
-                  <a href="#">Home</a>
-                </MDBBreadcrumbItem>
-                <MDBBreadcrumbItem>
-                  <a href="#">User</a>
-                </MDBBreadcrumbItem>
-                <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
-              </MDBBreadcrumb>
-            </MDBCol>
-          </MDBRow> */}
-
           <MDBRow>
             <MDBCol lg="4">
               <MDBCard className="mb-4">
@@ -102,10 +100,6 @@ const Account = () => {
                   <p className="text-muted mb-1">{name}</p>
                   <p className="text-muted mb-4">{address}</p>
                   <div className="d-flex justify-content-center mb-2">
-                    {/* <MDBBtn>Follow</MDBBtn>
-                    <MDBBtn outline className="ms-1">
-                      Message
-                    </MDBBtn> */}
                   </div>
                 </MDBCardBody>
               </MDBCard>
@@ -156,6 +150,15 @@ const Account = () => {
             <MDBCol lg="8">
               <MDBCard className="mb-4">
                 <MDBCardBody>
+                <MDBRow>
+                    <MDBCol sm="3">
+                      <MDBCardText>Customer Id</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                      <MDBCardText className="text-muted">{id}</MDBCardText>
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
                   <MDBRow>
                     <MDBCol sm="3">
                       <MDBCardText>Full Name</MDBCardText>
@@ -308,18 +311,12 @@ const Account = () => {
                             {Services.length*10}$
                             </MDBCardText>
                           </MDBCol>
-                        </MDBRow>
+                    </MDBRow>
                         <hr />
-                        {/* <MDBRow>
-                          <MDBCol sm="9">
-                            <MDBCardText>Teeth Whitening</MDBCardText>
-                          </MDBCol>
-                          <MDBCol sm="3">
-                            <MDBCardText className="text-muted">
-                              10$
-                            </MDBCardText>
-                          </MDBCol>
-                        </MDBRow> */}
+                      <MDBRow>
+                        <MDBBtn onClick={ Appointment }>Make An Appointment</MDBBtn>
+                      </MDBRow>
+                        
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>

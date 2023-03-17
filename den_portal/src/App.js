@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { AccountContext } from "./contexts/context.accoounts";
 
 import "./App.css";
+import Appointments from "./routes/appointments/appointments";
 
 function App() {
   const {setIsLogin,isLogin} = useContext(AccountContext);
@@ -26,14 +27,14 @@ function App() {
         <Route index={true} path="" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="services" element={<Service />} />
-        {/* <Route path="patient_portal" element={<Patientportal />} /> */}
         <Route path="faq" element={<Faq />} />
         <Route path="testimonials" element={<Testimonials />} />
         <Route path="register" element={<SignupForm />} />
         <Route path="login" element={<Signup />} />
+        <Route path="appointments" element={<Appointments />} />
         {isLogin && <Route path="account" element={<Account/>} />}
         { !isLogin && <Route path="account" element={<Signup/>} />}
-        {/* <Route path="auth" element={<Authentication />} /> */}
+
       </Route>
     </Routes>
   );
