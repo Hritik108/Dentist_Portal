@@ -1,3 +1,4 @@
+import './faq.component.css'
 import { useState } from "react";
 const Faq =()=>{
     const [activeIndex, setActiveIndex] = useState(null);

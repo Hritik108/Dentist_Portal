@@ -15,11 +15,21 @@ import {
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useContext } from "react";
+import { AccountContext } from "../../contexts/context.accoounts";
 
 import Alert from 'react-bootstrap/Alert';
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Appointments = () =>{
   const ref = useRef(null);
+  const navigate = useNavigate();
+  const {setAdminLogin} = useContext(AccountContext);
+  const logOut = ()=>{
+    setAdminLogin(false);
+    navigate('/adminlogin')
+  }
   const [Services,setServices] =useState([]);
   useEffect(() => {
     fetch('/api/fetch_all_appointments', {
@@ -74,6 +84,7 @@ const Appointments = () =>{
           <p className="h3" align="center">
             Todays Appointments
           </p>
+          <Button onClick={logOut}>LogOut</Button>
         </div>
         <div className="col">
           <hr />

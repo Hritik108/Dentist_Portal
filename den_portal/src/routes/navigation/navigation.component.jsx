@@ -8,35 +8,16 @@ import Testimonials from "../testimonials/testimonials";
 import Faq from "../faq/faq.component";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AccountContext } from "../../contexts/context.accoounts";
 import './navigation.component.css';
 
 const Navigation = () => {
    
-    // <Fragment>
-    //   <div className="navigation">
-    //     <Link className="logo-container" to="/">
-    //       <Home/>
-    //     </Link>
-    //     <Link className="logo-container" to="/about">
-    //       <About/>
-    //     </Link>
-    //     <Link className="logo-container" to="/services">
-    //       <p><Service/></p>
-    //     </Link>
-    //     <Link className="logo-container" to="/patient_portal">
-    //       <Patientportal/>
-    //     </Link>
-    //     <Link className="logo-container" to="/about">
-    //       <Testimonials/>
-    //     </Link>
-    //     <Link className="logo-container" to="/faq">
-    //       <Faq/>
-    //     </Link>
-    //   </div>
-    //   <Outlet />
-    // </Fragment>
+  const {isLogin,adminLogin,navval} =useContext(AccountContext)
 
 const [click, setClick] = useState(false);
+const login="Login";
 
 const handleClick = () => setClick(!click);
 const Close = () => setClick(false);
@@ -114,7 +95,18 @@ return (
               className="nav-links"
              onClick={click ? handleClick : null}
             >
-              Patient Portal
+              Login
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              exact
+              to="adminlogin"
+              activeClassName="active"
+              className="nav-links"
+             onClick={click ? handleClick : null}
+            >
+              AdminLogin
             </NavLink>
           </li>
         </ul>

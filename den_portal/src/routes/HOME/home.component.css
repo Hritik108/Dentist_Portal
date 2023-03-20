@@ -78,14 +78,16 @@
   #home-hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
+    color: #333;
   }
   
   #home-hero p {
     font-size: 24px;
     margin-bottom: 20px;
+    color: #333;
   }
   
-  .btn {
+  .btn-home {
     display: inline-block;
     background-color: #00bcd4;
     color: #fff;
@@ -103,6 +105,11 @@
   
   #home-services {
     margin-top: 80px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   }
   
   #home-services h2 {
@@ -139,6 +146,11 @@
   
   #home-about {
     margin-top: 80px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   }
   
   #home-about h2 {

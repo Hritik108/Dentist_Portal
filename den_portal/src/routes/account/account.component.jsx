@@ -15,13 +15,14 @@ import {
   MDBListGroup,
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
+import './account.component.css'
 const Account = () => {
   const navigate = useNavigate();
   const {
     name,
     setName,
     id,
-    setCustomerId,
+    setId,
     addAppointment,
     Appointments,
     isLogin,
@@ -38,9 +39,13 @@ const Account = () => {
   } = useContext(AccountContext);
   const logOut = () => {
     setName("");
-    setCustomerId("");
+    setId("");
     setAppointments("");
     setIsLogin(false);
+    setAddress("");
+    setEmail("");
+    // setGender("");
+    setNumber("");
     navigate("/login");
   };
 
@@ -83,7 +88,7 @@ const Account = () => {
 
   return (
     <div>
-      <Button onClick={logOut}></Button>
+      <Button onClick={logOut} className="accountlogout">LogOut</Button>
       <section style={{ backgroundColor: "#eee" }}>
         <MDBContainer className="py-5">
           <MDBRow>

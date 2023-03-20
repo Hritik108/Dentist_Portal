@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import "./signup.component.css";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import $ from "jquery";
-import { useNavigate } from "react-router-dom";
-import { AccountContext } from "../../contexts/context.accoounts";
-import { useContext } from "react";
-import Account from "../account/account.component";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useContext } from 'react';
+import { AccountContext } from '../../contexts/context.accoounts';
 
-const Signup = () => {
-  const [show, setShow] = useState(false);
+import './adminlogin.component.css'
+
+const AdminLogin = () =>{
+    
+    const [show, setShow] = useState(false);
   const [error , setError] = useState("")
-  const {setName,setIsLogin,setEmail,setNumber,setAddress,setId,setGender} = useContext(AccountContext);
+   const {setName,setIsLogin,setEmail,setNumber,setAddress,setId,setGender,adminLogin,setAdminLogin} = useContext(AccountContext);
   const navigate = useNavigate();
   const [customerId, setCustomerId] = useState("");
   const [password, setPassword] = useState("");
@@ -50,15 +49,16 @@ const Signup = () => {
           setShow(true)
         } 
         else {
-          console.log(data.data)
-          setName(data.data[0])
-          setEmail(data.data[1])
-          setNumber(data.data[2])
-          setId(data.data[6])
-          setAddress(data.data[4])
-          setGender(data.data[5])
-          setIsLogin(true)
-          navigate("/account");
+        //   console.log(data.data)
+        //   setName(data.data[0])
+        //   setEmail(data.data[1])
+        //   setNumber(data.data[2])
+        //   setCustomerId(data.data[6])
+        //   setAddress(data.data[4])
+        //   setGender(data.data[5])
+        //   setIsLogin(true)
+        setAdminLogin(true)
+          navigate("/appointments");
         }
       })
       .catch((error) => console.log(error));
@@ -108,6 +108,6 @@ const Signup = () => {
     </div>
     </div>
   );
-};
-
-export default Signup;
+    };
+    
+    export default AdminLogin;

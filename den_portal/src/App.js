@@ -12,12 +12,13 @@ import Signup from "./routes/signup/signup.component";
 import Account from "./routes/account/account.component";
 import { useContext } from "react";
 import { AccountContext } from "./contexts/context.accoounts";
+import AdminLogin from "./routes/adminlogin/adminlogin.component";
 
 import "./App.css";
 import Appointments from "./routes/appointments/appointments";
 
 function App() {
-  const {setIsLogin,isLogin} = useContext(AccountContext);
+  const {setIsLogin,isLogin,adminLogin} = useContext(AccountContext);
   return (
     // <div className="App">
     //   <h1>HELLO</h1>
@@ -31,11 +32,17 @@ function App() {
         <Route path="testimonials" element={<Testimonials />} />
         <Route path="register" element={<SignupForm />} />
         <Route path="login" element={<Signup />} />
-        <Route path="appointments" element={<Appointments />} />
-        {isLogin && <Route path="account" element={<Account/>} />}
+        <Route path="adminlogin" element={<AdminLogin />} />
         { !isLogin && <Route path="account" element={<Signup/>} />}
+        {/* { adminLogin && <Route path="appointments" element={<Appointments />} />}
+        { !adminLogin && <Route path="appointments" element={<AdminLogin />} />} */}
+  <Route path="appointments" element={<Appointments />} />
+        {/* <Route path="adminlogin" element={<AdminLogin />} /> */}
 
       </Route>
+      
+      {isLogin && <Route path="account" element={<Account/>} />}
+        
     </Routes>
   );
 }

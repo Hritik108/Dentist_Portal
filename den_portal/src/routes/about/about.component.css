@@ -1,12 +1,18 @@
 .about-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 0 20px;
+    /* margin-top: 80px; */
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   }
   
   .about-heading {
     font-size: 36px;
-    margin-top: 50px;
+    margin-top: 20px;
   }
   
   .about-desc {
