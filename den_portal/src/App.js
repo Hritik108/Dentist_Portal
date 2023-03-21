@@ -16,9 +16,10 @@ import AdminLogin from "./routes/adminlogin/adminlogin.component";
 
 import "./App.css";
 import Appointments from "./routes/appointments/appointments";
+import Prescription from "./routes/prescriptions/prescription";
 
 function App() {
-  const {setIsLogin,isLogin,adminLogin} = useContext(AccountContext);
+  const { setIsLogin, isLogin, adminLogin } = useContext(AccountContext);
   return (
     // <div className="App">
     //   <h1>HELLO</h1>
@@ -33,16 +34,15 @@ function App() {
         <Route path="register" element={<SignupForm />} />
         <Route path="login" element={<Signup />} />
         <Route path="adminlogin" element={<AdminLogin />} />
-        { !isLogin && <Route path="account" element={<Signup/>} />}
+        <Route path="prescription" element={<Prescription />} />
+        {!isLogin && <Route path="account" element={<Signup />} />}
         {/* { adminLogin && <Route path="appointments" element={<Appointments />} />}
         { !adminLogin && <Route path="appointments" element={<AdminLogin />} />} */}
-  <Route path="appointments" element={<Appointments />} />
+        <Route path="appointments" element={<Appointments />} />
         {/* <Route path="adminlogin" element={<AdminLogin />} /> */}
-
       </Route>
-      
-      {isLogin && <Route path="account" element={<Account/>} />}
-        
+
+      {isLogin && <Route path="account" element={<Account />} />}
     </Routes>
   );
 }
